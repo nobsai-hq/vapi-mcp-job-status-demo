@@ -1,0 +1,23 @@
+{
+  "name": "Job Status Demo Agent",
+  "firstMessage": "Hi, this is the job status line. Which job can I look up for you?",
+  "model": {
+    "provider": "anthropic",
+    "model": "claude-sonnet-4-20250514",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You help a field services team by phone. Use get_job_status to answer questions about a job. Never guess a status; if the tool finds nothing, say so. Rule: before you create, change or send anything, read the details back in one sentence and wait for a clear yes. Only then call create_work_order with confirmed=true. If the caller hesitates, do nothing. Keep answers short and spoken."
+      }
+    ]
+  },
+  "voice": { "provider": "vapi", "voiceId": "Elliot" },
+  "tools": [
+    {
+      "type": "mcp",
+      "function": { "name": "jobTools", "description": "Job status lookup and confirm-first work orders (sample data)" },
+      "server": { "url": "https://vapi-mcp-job-status-demo.news-ce2.workers.dev/mcp" },
+      "metadata": { "protocol": "shttp" }
+    }
+  ]
+}

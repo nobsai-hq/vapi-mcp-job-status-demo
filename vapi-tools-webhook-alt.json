@@ -1,0 +1,20 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "get_job_status",
+      "description": "Read-only. Look up one job by job number or customer name.",
+      "parameters": { "type": "object", "properties": { "query": { "type": "string" } }, "required": ["query"] }
+    },
+    "server": { "url": "https://vapi-mcp-job-status-demo.news-ce2.workers.dev/vapi/tools" }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "create_work_order",
+      "description": "WRITE. Only call with confirmed=true after the caller said yes to the read-back.",
+      "parameters": { "type": "object", "properties": { "po_number": { "type": "string" }, "job": { "type": "string" }, "description": { "type": "string" }, "confirmed": { "type": "boolean" } }, "required": ["po_number", "description"] }
+    },
+    "server": { "url": "https://vapi-mcp-job-status-demo.news-ce2.workers.dev/vapi/tools" }
+  }
+]
